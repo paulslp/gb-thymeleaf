@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navi(activeTab)">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/product/all}">GB SHop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/product/all}">Продукты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'ManufacturerList' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/manufacturer/all}">Производители</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'CategoryList' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/category/all}">Категории</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+[submodule "gb-api-mart"]
+	path = gb-api-mart
+	url = https://github.com/paulslp/gb-api-mart.git

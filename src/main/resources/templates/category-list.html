@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список фабрик</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div th:replace="~{navbar :: navi(CategoryList)}"/>
+<table>
+    <tr>
+        <td>
+            <a type="button" th:href="@{/category}" class="btn btn-warning">Добавить категорию</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="container">
+
+                <span th:if="${categories.size() == 0}">Производителей нет</span>
+
+                <div th:unless="${categories.size() == 0}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Наименование</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="category, i : ${categories}"
+                            th:attr="category_index=${category.id}">
+                            <th scope="row" th:text="${i.count}"></th>
+                            <td th:text="${category.title}"></td>
+                            <td>
+                                <a type="button" th:href="@{/category(id=${category.id})}"
+                                   class="btn btn-warning">Редактировать</a>
+                            </td>
+                            <td>
+                                <a type="button" th:href="@{/category/delete(id=${category.id})}"
+                                   class="btn btn-danger">Удалить</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+<div th:replace="~{footer :: footerBlock}"/>
+
+</body>
+</html>
