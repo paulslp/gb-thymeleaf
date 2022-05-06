@@ -52,6 +52,10 @@
                             <td>
                                 <a type="button" th:href="@{'/product/' + ${product.id} }" class="btn btn-warning">Просмотреть</a>
                             </td>
+                            <td>
+                                <a type="button" th:href="@{'/cart/add/' + ${product.id}}" class="btn btn-danger">Добавить
+                                    в корзину</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

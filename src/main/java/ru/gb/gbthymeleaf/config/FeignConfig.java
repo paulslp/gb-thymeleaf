@@ -10,6 +10,7 @@ import ru.gb.gbapi.category.api.CategoryGateway;
 import ru.gb.gbapi.config.FeignClientFactory;
 import ru.gb.gbapi.config.GbApiProperties;
 import ru.gb.gbapi.manufacturer.api.ManufacturerGateway;
+import ru.gb.gbapi.order.api.OrderGateway;
 import ru.gb.gbapi.product.api.ProductGateway;
 
 @Configuration
@@ -38,5 +39,11 @@ public class FeignConfig {
     public ProductGateway productExtGateway() {
         return feignClientFactory.newFeignClient(ProductGateway.class,
                 gbApiProperties.getEndpoint().getProductExternalUrl());
+    }
+
+    @Bean(name = "orderExtGateway")
+    public OrderGateway orderExtGateway() {
+        return feignClientFactory.newFeignClient(OrderGateway.class,
+                gbApiProperties.getEndpoint().getOrderExternalUrl());
     }
 }

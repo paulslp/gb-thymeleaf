@@ -26,7 +26,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
 
-    implementation files('lib/gb-api-mart-0.0.7-mart-plain.jar')
+    implementation files('lib/gb-api-mart-0.0.8-mart-plain.jar')
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
