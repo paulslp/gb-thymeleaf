@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.gb.gbapi.common.enums.OrderStatus;
 import ru.gb.gbapi.order.api.OrderGateway;
 import ru.gb.gbapi.order.dto.OrderDto;
 import ru.gb.gbapi.product.api.ProductGateway;
@@ -75,12 +76,19 @@ public class OrderController {
     public String saveOrder(@ModelAttribute OrderDto order) {
         if (!CollectionUtils.isEmpty(order.getProductsIdForAdding())) {
             List<ProductDto> products = order.getProductsIdForAdding().stream()
-                    .map(productId -> ProductDto.builder().id(Long.parseLong(productId)).build())
+                    .map(productId -> productGateway.getProduct(Long.valueOf(productId)).getBody())
                     .collect(Collectors.toList());
             order.setProducts(products);
         }
-        order.setStatus("Saved");
-        orderGateway.handlePost(order);
+
+        if (order.getId() == null) {
+            order.setStatus(OrderStatus.CREATED);
+            orderGateway.handlePost(order);
+        } else {
+            order.setStatus(OrderStatus.PROCESSING);
+            orderGateway.handleUpdate(order.getId(), order);
+        }
+
 
         return "redirect:/order/all";
     }

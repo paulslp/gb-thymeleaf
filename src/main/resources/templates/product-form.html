@@ -45,7 +45,7 @@
                     <option th:each="manufacturerFromAllList : ${allManufactures}"
                             th:value="${manufacturerFromAllList.name}"
                             th:utext="${manufacturerFromAllList.name}"
-                            th:selected="${manufacturer.equals(manufacturerFromAllList.name)}"/>
+                            th:selected="${manufacturerFromAllList.name.equals(manufacturer)}"/>
                 </select>
             </div>
 
